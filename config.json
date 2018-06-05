@@ -1,0 +1,17 @@
+{
+  "application": {
+    "title": "Application Status Monitoring Hub",
+    "os": "1.0.0",
+    "releaseDate": "01-12-2017",
+    "port": 3005,
+    "key": "/home/admins/keys/server.key",
+    "cert": "/home/admins/keys/server.crt",
+    "interval": 100
+  },
+  "influxDB": {
+    "dbName": "health",
+    "username": "bubba",
+    "password": "bumblebeetuna",
+    "address": "http://localhost:8086"
+  }
+}
