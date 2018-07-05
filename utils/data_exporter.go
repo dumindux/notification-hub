@@ -20,7 +20,7 @@ func DataExporter(config *InfluxDB, name string, dataChannel chan []byte) {
 		log.Println("receved data")
 		fmt.Println(status)
 
-		bp, err := client.NewBatchPoints(client.BatchPointsConfig{
+		batchPoints, err := client.NewBatchPoints(client.BatchPointsConfig{
 			Database:  config.DBName,
 			Precision: "ns",
 		})
@@ -38,9 +38,9 @@ func DataExporter(config *InfluxDB, name string, dataChannel chan []byte) {
 			log.Fatal(err)
 		}
 
-		bp.AddPoint(pt)
+		batchPoints.AddPoint(pt)
 
-		if err := (*dbClient).Write(bp); err != nil {
+		if err := (*dbClient).Write(batchPoints); err != nil {
 			log.Fatal(err)
 			dbClient = createConnection(config);
 		}
